@@ -23,7 +23,7 @@ def monty_hall():
                 switchToDoor = x
         print("Door {} contains a donkey".format(revealedDoor))
 
-    switchAnswer = str(input("You have selected Door {}. Would you like to switch doors to Door {}? (Y/N)".format(selectedDoor, switchToDoor)))
+    switchAnswer = str(input("You have selected Door {}. Would you like to switch doors to Door {}? (Y/N) ".format(selectedDoor, switchToDoor)))
     if switchAnswer == "Y":
         selectedDoor = switchToDoor
 
