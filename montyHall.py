@@ -12,8 +12,8 @@ def monty_hall():
 
     if carDoor == selectedDoor:
         print("Door {} contains a donkey behind it.".format(otherDoor1))
-        revealedDoor = otherDoor1
-        switchToDoor = otherDoor2
+        revealedDoor, switchToDoor = otherDoor1, otherDoor2
+        
     else:
         for x in range(1, 4):
             if x != selectedDoor and x != carDoor:
@@ -24,7 +24,7 @@ def monty_hall():
         print("Door {} contains a donkey".format(revealedDoor))
 
     switchAnswer = str(input("You have selected Door {}. Would you like to switch doors to Door {}? (Y/N) ".format(selectedDoor, switchToDoor)))
-    if switchAnswer == "Y":
+    if switchAnswer == "Y" or "y":
         selectedDoor = switchToDoor
 
     if selectedDoor == carDoor:
@@ -33,7 +33,7 @@ def monty_hall():
         print("Sorry, you lost!")
 
     playAgain = str(input("Would you like to play again? (Y/N) "))
-    if playAgain == "Y":
+    if playAgain == "Y" or "y":
         monty_hall()
 
 main()
