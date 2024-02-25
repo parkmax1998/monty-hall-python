@@ -36,7 +36,7 @@ def monty_hall(gamesPlayed, wins):
         print("Sorry, you lost!")
 
     gamesPlayed = gamesPlayed + 1
-    print("Win rate is {}. \nYou have {} wins and {} games played".format((wins/gamesPlayed)))
+    print("Win rate is {}.".format((wins/gamesPlayed)))
     print("You have {} wins and {} games played".format(wins, gamesPlayed))
     playAgain = str(input("Would you like to play again? (Y/N) "))
     if playAgain == "Y" or "y":
