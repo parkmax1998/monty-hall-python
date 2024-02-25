@@ -1,6 +1,7 @@
 import random
 
 def main():
+    gamesPlayed = 0
     monty_hall()
 
 def monty_hall():
@@ -9,6 +10,8 @@ def monty_hall():
     otherDoor1 = doorList.pop(random.randrange(len(doorList)))
     otherDoor2 = doorList.pop(random.randrange(len(doorList)))
     selectedDoor = int(input("Please select Door 1, Door 2, or Door 3: "))
+
+    wins = 0
 
     if carDoor == selectedDoor:
         print("Door {} contains a donkey behind it.".format(otherDoor1))
@@ -29,9 +32,12 @@ def monty_hall():
 
     if selectedDoor == carDoor:
         print("Congratulations! You have gotten the car from door {}.".format(selectedDoor))
+        wins += 1
     else:
         print("Sorry, you lost!")
 
+    gamesPlayed += 1
+    print("Win rate is {}".format(wins/gamesPlayed)
     playAgain = str(input("Would you like to play again? (Y/N) "))
     if playAgain == "Y" or "y":
         monty_hall()
