@@ -9,4 +9,4 @@ This program was written in order to create a showcase of why one should switch 
 
 [Wikipedia Source](https://en.wikipedia.org/wiki/Monty_Hall_problem)
 
-Test test test
+This text is a test. I am trying Git.
