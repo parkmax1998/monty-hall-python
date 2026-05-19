@@ -7,4 +7,7 @@ The confusion caused by this problem becomes evident at this point. Many people 
 ## The Why
 This program was written in order to create a showcase of why one should switch - it's much easier to explain why the player should switch if they play the game themselves.
 
+## Under the Hood
+This program uses a simple class called "Door" with the properties of "Number," "Selected," "Behind," and "Other." Though simple, this is used to show how objects work in Python classes.
+
 [Wikipedia Source](https://en.wikipedia.org/wiki/Monty_Hall_problem)
