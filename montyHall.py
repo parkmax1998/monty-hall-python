@@ -9,9 +9,7 @@ def main():
     keepPlaying = True
     game_record = {
         'Won': [],
-        'Lost': [],
-        'Switched': [],
-        'No Switch': []
+        'Switched': []
     }
 
     while keepPlaying == True:
@@ -48,20 +46,16 @@ def main():
         if switchAnswer == "y":
             selected = otherDoor
             game_record['Switched'].append(True)
-            game_record['No Switch'].append(False)
         else:
             game_record['Switched'].append(False)
-            game_record['No Switch'].append(True)
 
         if doorList[selected - 1].behind[0] == 'Car':
             print("Congratulations! You have gotten the car from door {}.\n".format(doorList[selected - 1].num))
             wins += 1
             game_record['Won'].append(True)
-            game_record['Lost'].append(False)
         else:
             print("Sorry, you lost!\n")
             game_record['Won'].append(False)
-            game_record['Lost'].append(True)
 
         gamesPlayed = gamesPlayed + 1
         print("Win rate is {}.\n".format((wins/gamesPlayed)))
@@ -75,8 +69,7 @@ def main():
         else:
             print('Please enter either "Y" or "N"')
     df = pd.DataFrame(game_record)
-    correlation_matrix = df.corr()
-    print(correlation_matrix)
+    print(df.groupby('Switched')['Won'].mean().to_string())
     print('Thank you for playing!')
     
 main()
