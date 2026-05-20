@@ -1,13 +1,18 @@
 import random
-import time
-# import csv
-# import pandas
+# import time
+import pandas as pd
 from door import door
 
 def main():
     gamesPlayed = 0
     wins = 0
     keepPlaying = True
+    game_record = {
+        'Won': [],
+        'Lost': [],
+        'Switched': [],
+        'No Switch': []
+    }
 
     while keepPlaying == True:
         doorList = []
@@ -26,8 +31,6 @@ def main():
         for i in range(0, 3):
             if doorList[i].num == selected:
                 doorList[i].select_door(True)
-            
-            # print(f'num: {doorList[i].num}, selected: {doorList[i].selected}, other: {doorList[i].other}, behind: {doorList[i].behind[0]}\n')
 
         while informed == False:
             i = random.randint(0, 2)
@@ -38,18 +41,27 @@ def main():
                         otherDoor = j + 1
                 informed = True
         
-        time.sleep(2)
+        #time.sleep(2)
 
         switchAnswer = str(input("You have selected Door {}. Would you like to switch doors to Door {}? (Y/N) ".format(selected, otherDoor))).lower()
 
         if switchAnswer == "y":
             selected = otherDoor
+            game_record['Switched'].append(True)
+            game_record['No Switch'].append(False)
+        else:
+            game_record['Switched'].append(False)
+            game_record['No Switch'].append(True)
 
         if doorList[selected - 1].behind[0] == 'Car':
             print("Congratulations! You have gotten the car from door {}.\n".format(doorList[selected - 1].num))
             wins += 1
+            game_record['Won'].append(True)
+            game_record['Lost'].append(False)
         else:
             print("Sorry, you lost!\n")
+            game_record['Won'].append(False)
+            game_record['Lost'].append(True)
 
         gamesPlayed = gamesPlayed + 1
         print("Win rate is {}.\n".format((wins/gamesPlayed)))
@@ -62,6 +74,9 @@ def main():
             continue
         else:
             print('Please enter either "Y" or "N"')
+    df = pd.DataFrame(game_record)
+    correlation_matrix = df.corr()
+    print(correlation_matrix)
     print('Thank you for playing!')
     
 main()
